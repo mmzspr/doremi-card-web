@@ -4,12 +4,38 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
+    "format": "prettier --cache --write src __test__ \"**/*.ts\"",
+    "lint": "eslint --cache --fix \"src/**/*.ts\" \"__test__/**/*.ts\"",
+    "test": "vitest",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^39.1.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vitest": "^0.3.8",
+    "husky": "^8.0.3",
+    "prettier": "^3.0.3",
+    "sass": "^1.69.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.5",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "vexflow": "^4.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint && format && test",
+      "pre-push": "lint && format && test"
+    }
   }
 }
