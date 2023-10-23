@@ -9,7 +9,7 @@ export function drawScore(key: string): void {
   const renderer = new Renderer(div, Renderer.Backends.SVG);
 
   // svg size
-  renderer.resize(1000, 1000);
+  renderer.resize(500, 300);
 
   const context = renderer.getContext();
   context.scale(3, 3);
