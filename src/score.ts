@@ -1,4 +1,4 @@
-import Vex  from 'vexflow';
+import Vex from 'vexflow';
 import { UndefinedDomError } from './error';
 const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
 
@@ -30,7 +30,6 @@ export default class Score {
   }
 
   private drawNote(key: string): void {
-
     const notes = [new StaveNote({ keys: [key], duration: 'w' })];
 
     // Create a voice in 4/4 and add above notes
@@ -42,5 +41,17 @@ export default class Score {
 
     // Render voice
     voice.draw(this.context, this.stave);
+  }
+
+  public redrawNote(key: string): void {
+    this.removeStaveNotes();
+    this.drawNote(key);
+  }
+
+  private removeStaveNotes(): void {
+    const staveNotes = this.div.querySelectorAll('.vf-stavenote');
+    for (const staveNote of staveNotes) {
+      staveNote.parentNode?.removeChild(staveNote);
+    }
   }
 }
