@@ -30,6 +30,7 @@
     "vitest": "^0.34.6"
   },
   "dependencies": {
+    "@types/vexflow": "^1.2.40",
     "vexflow": "^4.2.3"
   },
   "husky": {
