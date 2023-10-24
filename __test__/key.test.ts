@@ -7,19 +7,19 @@ describe('Key class', () => {
   const key = new Key({ scale: 'd', octave: 4 });
 
   test('getScale', () => {
-    expect(key.getScale()).toBe('d');
+    expect(key.scale).toBe('d');
   });
 
   test('getOctave', () => {
-    expect(key.getOctave()).toBe(4);
+    expect(key.octave).toBe(4);
   });
 
   test('getString', () => {
-    expect(key.getString()).toBe('d/4');
+    expect(key.string).toBe('d/4');
   });
 
   test('getNumber', () => {
-    expect(key.getNumber()).toBe(41);
+    expect(key.number).toBe(41);
   });
 
   describe('isSmaller', () => {

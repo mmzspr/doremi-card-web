@@ -12,7 +12,7 @@ window.onload = () => {
   const higherKey = new Key(parseKey('a/5'));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score = new Score('#output', randomKey.getString());
+  score = new Score('#output', randomKey.string);
   console.log(score);
   eventSetting();
 };
@@ -29,6 +29,6 @@ function eventSetting(): void {
     const higherKey = new Key(parseKey('a/5'));
 
     const randomKey = generateRandomKey(lowerKey, higherKey);
-    score.redrawNote(randomKey.getString());
+    score.redrawNote(randomKey.string);
   });
 }
