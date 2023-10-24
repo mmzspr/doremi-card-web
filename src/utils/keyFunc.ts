@@ -1,4 +1,4 @@
-import { type IKey, type Scale, scaleList } from '../types/types';
+import { type IKey, type Scale, scaleList } from '../types/key';
 import { InvalidKeyError, UnexpectedArgumentError } from '../class/error';
 import Key from '../class/key';
 

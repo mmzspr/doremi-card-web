@@ -1,4 +1,4 @@
-import { type IKey, type Scale, scaleList } from '../types/types';
+import { type IKey, type Scale, scaleList } from '../types/key';
 
 export default class Key {
   private readonly scale: Scale;

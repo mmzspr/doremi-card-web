@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import Key from '../src/class/key';
-import { type Scale } from '../src/types/types';
+import { type Scale } from '../src/types/key';
 
 // ========== Key ==========
 describe('Key class', () => {
