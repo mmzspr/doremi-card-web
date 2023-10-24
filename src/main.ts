@@ -1,9 +1,9 @@
 import './style.scss';
-import { parseKey, generateRandomKey } from './utils';
-import { UndefinedDomError } from './error';
+import { parseKey, generateRandomKey } from './utils/keyFunc';
+import { UndefinedDomError } from './class/error';
 
-import Score from './score';
-import Key from './key';
+import Score from './class/score';
+import Key from './class/key';
 
 let score: Score;
 

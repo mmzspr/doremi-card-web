@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { isValidKey, parseKey, generateRandomKey } from '../src/utils';
-import Key from '../src/key';
-import { InvalidKeyError, UnexpectedArgumentError } from '../src/error';
+import { isValidKey, parseKey, generateRandomKey } from '../src/utils/keyFunc';
+import Key from '../src/class/key';
+import { InvalidKeyError, UnexpectedArgumentError } from '../src/class/error';
 
 // ================================
 //           isValidKey
