@@ -1,6 +1,6 @@
 import { type IKey, type Scale, scaleList } from '../types/types';
-import Key from '../class/key';
 import { InvalidKeyError, UnexpectedArgumentError } from '../class/error';
+import Key from '../class/key';
 
 export function isValidKey(key: string): boolean {
   // example: a/10, g/-1, c/+2

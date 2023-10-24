@@ -1,5 +1,5 @@
 import './style.scss';
-import { parseKey, generateRandomKey } from './utils/utils';
+import { parseKey, generateRandomKey } from './utils/keyFunc';
 import { UndefinedDomError } from './class/error';
 
 import Score from './class/score';
