@@ -32,11 +32,5 @@
   "dependencies": {
     "@types/vexflow": "^1.2.40",
     "vexflow": "^4.2.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint && format && test",
-      "pre-push": "lint && format && test"
-    }
   }
 }
