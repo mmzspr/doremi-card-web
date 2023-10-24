@@ -103,11 +103,11 @@ describe('generateRandomKey', () => {
       const higherKey = new Key(parseKey(higherKeyStr));
 
       const randomKey = generateRandomKey(lowerKey, higherKey);
-      expect(isValidKey(randomKey.getString())).toBe(true);
-      expect(randomKey.getNumber()).toBeGreaterThanOrEqual(
-        lowerKey.getNumber(),
+      expect(isValidKey(randomKey.string)).toBe(true);
+      expect(randomKey.number).toBeGreaterThanOrEqual(
+        lowerKey.number,
       );
-      expect(randomKey.getNumber()).toBeLessThanOrEqual(higherKey.getNumber());
+      expect(randomKey.number).toBeLessThanOrEqual(higherKey.number);
     });
   });
 

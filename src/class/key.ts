@@ -11,23 +11,23 @@ export default class Key {
     this._number = scaleList.indexOf(this._scale) + this._octave * 10;
   }
 
-  public getScale(): Scale {
+  public get scale(): Scale {
     return this._scale;
   }
 
-  public getOctave(): number {
+  public get octave(): number {
     return this._octave;
   }
 
-  public getString(): string {
+  public get string(): string {
     return this._scale + '/' + this._octave;
   }
 
-  public getNumber(): number {
+  public get number(): number {
     return this._number;
   }
 
   public isSmaller(key: Key): boolean {
-    return this._number < key.getNumber();
+    return this._number < key.number;
   }
 }
