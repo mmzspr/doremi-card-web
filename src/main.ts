@@ -18,7 +18,6 @@ window.onload = () => {
 };
 
 function eventSetting(): void {
-  
   // ===== refresh button =====
   const refreshButton =
     document.querySelector<HTMLButtonElement>('#refresh-button');
@@ -43,12 +42,13 @@ function eventSetting(): void {
     button.addEventListener('click', () => {
       const answerScale = button.dataset.scale;
       if (answerScale == null) {
-        throw new UndefinedDomAttributeError('button: dataset-scale attribute not found');
+        throw new UndefinedDomAttributeError(
+          'button: dataset-scale attribute not found',
+        );
       }
       answer(answerScale);
     });
   }
-
 }
 
 function refresh(): void {
@@ -60,10 +60,10 @@ function refresh(): void {
 }
 
 function answer(answerScale: string): void {
-  const scoreScale = parseKey(score.key).scale; 
+  const scoreScale = parseKey(score.key).scale;
 
   if (answerScale === scoreScale) {
-    alert("Correct!");
+    alert('Correct!');
   } else {
     alert('Wrong!');
   }
