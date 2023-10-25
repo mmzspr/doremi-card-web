@@ -19,17 +19,6 @@ window.onload = () => {
 };
 
 function eventSetting(): void {
-  // ===== refresh button =====
-  const refreshButton =
-    document.querySelector<HTMLButtonElement>('#refresh-button');
-  if (refreshButton == null) {
-    throw new UndefinedDomError('refresh button not found');
-  }
-
-  refreshButton.addEventListener('click', () => {
-    refresh();
-  });
-
   // ===== answer button =====
   const answerButtons = document.querySelectorAll<HTMLButtonElement>(
     '.answer-wrapper button',
