@@ -104,9 +104,7 @@ describe('generateRandomKey', () => {
 
       const randomKey = generateRandomKey(lowerKey, higherKey);
       expect(isValidKey(randomKey.string)).toBe(true);
-      expect(randomKey.number).toBeGreaterThanOrEqual(
-        lowerKey.number,
-      );
+      expect(randomKey.number).toBeGreaterThanOrEqual(lowerKey.number);
       expect(randomKey.number).toBeLessThanOrEqual(higherKey.number);
     });
   });
