@@ -12,6 +12,29 @@
       <h1>音符カード Online</h1>
     </header>
     <main>
+      <div id="judge">
+        <span id="judge-result">不正解</span>
+
+        <div id="incorrect-wrapper">
+          <!-- cross svg -->
+          <svg class="incorrect-color" viewBox="0 0 48 48">
+            <line x1="4" y1="44" x2="44" y2="4"/>
+            <line x1="4" y1="4" x2="44" y2="44"/>
+          </svg>
+          <span id="answer-scale" class="incorrect-color">ド</span>
+          <!-- arrow svg -->
+          <svg class="arrow" viewBox="0 0 48 48">
+            <line x1="0" y1="24" x2="40" y2="24"/>
+            <polygon points="30,16 30,32 40,24" />
+          </svg>
+        </div>
+        
+        <!-- circle svg -->
+        <svg class="correct-color" viewBox='0 0 48 48'>
+          <circle cx='24' cy='24' r='19' fill='none'>
+        </svg>
+        <span id="score-scale" class="correct-color">レ</span>
+      </div>
       <div id="output"></div>
       <div class="answer-wrapper">
         <button data-scale="c">ド</button>
@@ -22,7 +45,6 @@
         <button data-scale="a">ラ</button>
         <button data-scale="b">シ</button>
       </div>
-      <button id="refresh-button">refresh</button>
     </main>
   </body>
 </html>
