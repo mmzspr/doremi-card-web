@@ -21,3 +21,11 @@ export class UndefinedDomError extends Error {
     this.stack = (new Error() as any).stack;
   }
 }
+
+export class UndefinedDomAttributeError extends Error {
+  constructor(public message: string) {
+    super(message);
+    this.name = 'UndefinedDomAttributeError';
+    this.stack = (new Error() as any).stack;
+  }
+}
