@@ -71,9 +71,9 @@ function answer(answerScale: string): void {
     document.querySelector<HTMLDivElement>('#judge-result');
   const incorrectDom =
     document.querySelector<HTMLDivElement>('#incorrect-wrapper');
-  const inputScaleDom = document.querySelector<HTMLDivElement>('#input-scale');
-  const correctScaleDom =
-    document.querySelector<HTMLDivElement>('#correct-scale');
+  const answerScaleDom =
+    document.querySelector<HTMLDivElement>('#answer-scale');
+  const scoreScaleDom = document.querySelector<HTMLDivElement>('#score-scale');
   if (judgeDom == null) {
     throw new UndefinedDomError('judge dom not found');
   }
@@ -83,16 +83,16 @@ function answer(answerScale: string): void {
   if (incorrectDom == null) {
     throw new UndefinedDomError('incorrect dom not found');
   }
-  if (inputScaleDom == null) {
+  if (answerScaleDom == null) {
     throw new UndefinedDomError('input-scale dom not found');
   }
-  if (correctScaleDom == null) {
+  if (scoreScaleDom == null) {
     throw new UndefinedDomError('correct-scale dom not found');
   }
 
   judgeDom.style.visibility = 'visible';
-  inputScaleDom.innerText = toItalianScale(answerScale as Scale);
-  correctScaleDom.innerText = toItalianScale(scoreScale as Scale);
+  answerScaleDom.innerText = toItalianScale(answerScale as Scale);
+  scoreScaleDom.innerText = toItalianScale(scoreScale as Scale);
 
   if (answerScale === scoreScale) {
     judgeResultDom.innerText = '正解';
