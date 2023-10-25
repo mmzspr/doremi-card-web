@@ -85,13 +85,12 @@ main {
     color: #7d7d7d;
   }
 
-  .correct {
+  .correct-color {
     color: #24c1ff;
     stroke: #24c1ff;
-    stroke-width: 10;
   }
 
-  .incorrect {
+  .incorrect-color {
     color: #ff6666;
     stroke: #ff6666;
   }
@@ -99,9 +98,5 @@ main {
   .arrow {
     margin: 5px;
     stroke: #c5c5c5;
-  }
-
-  #correct-scale {
-    color: #24c1ff;
   }
 }
