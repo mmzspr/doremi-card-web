@@ -1,4 +1,10 @@
-import { type IKey, type Scale, scaleList } from '../types/key';
+import {
+  type IKey,
+  type Scale,
+  type ItalianScale,
+  scaleList,
+  italianScaleList,
+} from '../types/key';
 import { InvalidKeyError, UnexpectedArgumentError } from '../class/error';
 import Key from '../class/key';
 
@@ -6,6 +12,11 @@ export function isValidKey(key: string): boolean {
   // example: a/10, g/-1, c/+2
   const regex = /^[a-g]\/[-+]?\d+$/;
   return regex.test(key);
+}
+
+export function toItalianScale(scale: Scale): ItalianScale {
+  const scaleIndex = scaleList.indexOf(scale);
+  return italianScaleList[scaleIndex];
 }
 
 export function parseKey(key: string): IKey {
