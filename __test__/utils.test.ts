@@ -1,5 +1,11 @@
 import { describe, expect, test } from 'vitest';
-import { isValidKey, parseKey, generateRandomKey } from '../src/utils/keyFunc';
+import { type Scale } from '../src/types/key';
+import {
+  isValidKey,
+  toItalianScale,
+  parseKey,
+  generateRandomKey,
+} from '../src/utils/keyFunc';
 import Key from '../src/class/key';
 import { InvalidKeyError, UnexpectedArgumentError } from '../src/class/error';
 
@@ -40,6 +46,23 @@ describe('isValidKey', () => {
     ])('%s -> false', (keystr) => {
       expect(isValidKey(keystr)).toBe(false);
     });
+  });
+});
+
+// ================================
+//         toItalianScale
+// ================================
+describe('toItalianScale', () => {
+  test.each([
+    { scale: 'c' as Scale, expected: 'ド' },
+    { scale: 'd' as Scale, expected: 'レ' },
+    { scale: 'e' as Scale, expected: 'ミ' },
+    { scale: 'f' as Scale, expected: 'ファ' },
+    { scale: 'g' as Scale, expected: 'ソ' },
+    { scale: 'a' as Scale, expected: 'ラ' },
+    { scale: 'b' as Scale, expected: 'シ' },
+  ])('$scale -> $expected', ({ scale, expected }) => {
+    expect(toItalianScale(scale)).toBe(expected);
   });
 });
 
