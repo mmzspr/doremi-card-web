@@ -67,6 +67,10 @@ main {
 #judge {
   margin-top: 15px;
 
+  #incorrect-wrapper {
+    display: inline-block;
+  }
+
   span {
     display: inline-block;
     font-size: 30px;
