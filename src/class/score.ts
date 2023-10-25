@@ -3,12 +3,15 @@ import { UndefinedDomError } from './error';
 const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
 
 export default class Score {
+  private _key: string;
   private readonly div: HTMLDivElement;
   private readonly renderer: Vex.Flow.Renderer;
   private readonly context: Vex.IRenderContext;
   private readonly stave: Vex.Flow.Stave;
 
   constructor(divId: string, key: string) {
+    this._key = key;
+
     const div = document.querySelector<HTMLDivElement>(divId);
     if (div == null) {
       throw new UndefinedDomError('output div not found');
@@ -44,6 +47,7 @@ export default class Score {
   }
 
   public redrawNote(key: string): void {
+    this._key = key;
     this.removeStaveNotes();
     this.drawNote(key);
   }
@@ -53,5 +57,9 @@ export default class Score {
     for (const staveNote of staveNotes) {
       staveNote.parentNode?.removeChild(staveNote);
     }
+  }
+
+  get key(): string {
+    return this._key;
   }
 }
