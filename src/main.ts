@@ -1,11 +1,12 @@
 import './style.scss';
-import { parseKey, generateRandomKey } from './utils/keyFunc';
+import { parseKey, toItalianScale, generateRandomKey } from './utils/keyFunc';
 import { UndefinedDomError, UndefinedDomAttributeError } from './class/error';
-
+import { type Scale } from './types/key';
 import Score from './class/score';
 import Key from './class/key';
 
 let score: Score;
+let timer: ReturnType<typeof setTimeout> | null;
 
 window.onload = () => {
   const lowerKey = new Key(parseKey('c/4'));
@@ -60,12 +61,49 @@ function refresh(): void {
 }
 
 function answer(answerScale: string): void {
+  if (timer != null) {
+    return;
+  }
   const scoreScale = parseKey(score.key).scale;
 
-  if (answerScale === scoreScale) {
-    alert('Correct!');
-  } else {
-    alert('Wrong!');
+  const judgeDom = document.querySelector<HTMLDivElement>('#judge');
+  const judgeResultDom =
+    document.querySelector<HTMLDivElement>('#judge-result');
+  const incorrectDom =
+    document.querySelector<HTMLDivElement>('#incorrect-wrapper');
+  const inputScaleDom = document.querySelector<HTMLDivElement>('#input-scale');
+  const correctScaleDom =
+    document.querySelector<HTMLDivElement>('#correct-scale');
+  if (judgeDom == null) {
+    throw new UndefinedDomError('judge dom not found');
   }
-  refresh();
+  if (judgeResultDom == null) {
+    throw new UndefinedDomError('judge-result dom not found');
+  }
+  if (incorrectDom == null) {
+    throw new UndefinedDomError('incorrect dom not found');
+  }
+  if (inputScaleDom == null) {
+    throw new UndefinedDomError('input-scale dom not found');
+  }
+  if (correctScaleDom == null) {
+    throw new UndefinedDomError('correct-scale dom not found');
+  }
+
+  judgeDom.style.visibility = 'visible';
+  inputScaleDom.innerText = toItalianScale(answerScale as Scale);
+  correctScaleDom.innerText = toItalianScale(scoreScale as Scale);
+
+  if (answerScale === scoreScale) {
+    judgeResultDom.innerText = '正解';
+    incorrectDom.style.display = 'none';
+  } else {
+    judgeResultDom.innerText = '不正解';
+    incorrectDom.style.display = 'inline-block';
+  }
+  timer = setTimeout(() => {
+    judgeDom.style.visibility = 'hidden';
+    refresh();
+    timer = null;
+  }, 1000);
 }
