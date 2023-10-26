@@ -4,13 +4,15 @@ const { Renderer, Stave, StaveNote, Voice, Formatter } = Vex.Flow;
 
 export default class Score {
   private _key: string;
+  private _clef: string;
   private readonly div: HTMLDivElement;
   private readonly renderer: Vex.Flow.Renderer;
   private readonly context: Vex.IRenderContext;
-  private readonly stave: Vex.Flow.Stave;
+  private readonly staves: Record<string, Vex.Flow.Stave>;
 
-  constructor(divId: string, key: string) {
+  constructor(divId: string, key: string, clef: string) {
     this._key = key;
+    this._clef = clef;
 
     const div = document.querySelector<HTMLDivElement>(divId);
     if (div == null) {
@@ -20,20 +22,25 @@ export default class Score {
     this.div = div;
 
     this.renderer = new Renderer(this.div, Renderer.Backends.SVG);
-    this.renderer.resize(500, 300);
+    this.renderer.resize(500, 500);
 
     this.context = this.renderer.getContext();
     this.context.scale(3, 3);
 
-    this.stave = new Stave(0, 0, 1000);
-    this.stave.addClef('treble');
-    this.stave.setContext(this.context).draw();
+    this.staves = {};
+    this.staves.treble = new Stave(0, 0, 1000).addClef('treble');
+    this.staves.treble.setContext(this.context).draw();
 
-    this.drawNote(key);
+    this.staves.bass = new Stave(0, 70, 1000).addClef('bass');
+    this.staves.bass.setContext(this.context).draw();
+
+    this.drawNote();
   }
 
-  private drawNote(key: string): void {
-    const notes = [new StaveNote({ keys: [key], duration: 'w' })];
+  private drawNote(): void {
+    const notes = [
+      new StaveNote({ keys: [this._key], duration: 'w', clef: this._clef }),
+    ];
 
     // Create a voice in 4/4 and add above notes
     const voice = new Voice({ num_beats: 4, beat_value: 4 });
@@ -43,13 +50,14 @@ export default class Score {
     new Formatter().joinVoices([voice]).format([voice], 400);
 
     // Render voice
-    voice.draw(this.context, this.stave);
+    voice.draw(this.context, this.staves[this._clef]);
   }
 
-  public redrawNote(key: string): void {
+  public redrawNote(key: string, clef: string): void {
     this._key = key;
+    this._clef = clef;
     this.removeStaveNotes();
-    this.drawNote(key);
+    this.drawNote();
   }
 
   private removeStaveNotes(): void {

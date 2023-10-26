@@ -10,13 +10,17 @@ let score: Score;
 let sound: Sound;
 let timer: ReturnType<typeof setTimeout> | null;
 
+const lowerKeyString = 'f/2';
+const higherKeyString = 'a/5';
+
 window.onload = () => {
-  const lowerKey = new Key(parseKey('c/4'));
-  const higherKey = new Key(parseKey('a/5'));
+  const lowerKey = new Key(parseKey(lowerKeyString));
+  const higherKey = new Key(parseKey(higherKeyString));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score = new Score('#output', randomKey.string);
-  sound = new Sound('c/4', 'a/5');
+  const clef = judgeClef(randomKey);
+  score = new Score('#output', randomKey.string, clef);
+  sound = new Sound(lowerKeyString, higherKeyString);
   console.log(score);
   eventSetting();
 };
@@ -45,11 +49,12 @@ function eventSetting(): void {
 }
 
 function refresh(): void {
-  const lowerKey = new Key(parseKey('c/4'));
-  const higherKey = new Key(parseKey('a/5'));
+  const lowerKey = new Key(parseKey(lowerKeyString));
+  const higherKey = new Key(parseKey(higherKeyString));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score.redrawNote(randomKey.string);
+  const clef = judgeClef(randomKey);
+  score.redrawNote(randomKey.string, clef);
 }
 
 function answer(answerScale: string): void {
@@ -98,4 +103,12 @@ function answer(answerScale: string): void {
     refresh();
     timer = null;
   }, 1000);
+}
+
+function judgeClef(key: Key): string {
+  if (key.number >= 40) {
+    return 'treble';
+  } else {
+    return 'bass';
+  }
 }
