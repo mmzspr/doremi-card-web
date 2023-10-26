@@ -4,8 +4,10 @@ import { UndefinedDomError, UndefinedDomAttributeError } from './class/error';
 import { type Scale } from './types/key';
 import Score from './class/score';
 import Key from './class/key';
+import Sound from './class/sound';
 
 let score: Score;
+let sound: Sound;
 let timer: ReturnType<typeof setTimeout> | null;
 
 window.onload = () => {
@@ -14,6 +16,7 @@ window.onload = () => {
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
   score = new Score('#output', randomKey.string);
+  sound = new Sound('c/4', 'a/5');
   console.log(score);
   eventSetting();
 };
@@ -53,8 +56,8 @@ function answer(answerScale: string): void {
   if (timer != null) {
     return;
   }
+  sound.play(score.key);
   const scoreScale = parseKey(score.key).scale;
-
   const judgeDom = document.querySelector<HTMLDivElement>('#judge');
   const judgeResultDom =
     document.querySelector<HTMLDivElement>('#judge-result');
