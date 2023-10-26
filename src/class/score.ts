@@ -7,7 +7,7 @@ export default class Score {
   private readonly div: HTMLDivElement;
   private readonly renderer: Vex.Flow.Renderer;
   private readonly context: Vex.IRenderContext;
-  private readonly stave: Vex.Flow.Stave;
+  private readonly staves: Record<string, Vex.Flow.Stave>;
 
   constructor(divId: string, key: string) {
     this._key = key;
@@ -20,14 +20,17 @@ export default class Score {
     this.div = div;
 
     this.renderer = new Renderer(this.div, Renderer.Backends.SVG);
-    this.renderer.resize(500, 300);
+    this.renderer.resize(500, 500);
 
     this.context = this.renderer.getContext();
     this.context.scale(3, 3);
 
-    this.stave = new Stave(0, 0, 1000);
-    this.stave.addClef('treble');
-    this.stave.setContext(this.context).draw();
+    this.staves = {};
+    this.staves.treble = new Stave(0, 0, 1000).addClef('treble');
+    this.staves.treble.setContext(this.context).draw();
+
+    this.staves.bass = new Stave(0, 70, 1000).addClef('bass');
+    this.staves.bass.setContext(this.context).draw();
 
     this.drawNote(key);
   }
@@ -43,7 +46,7 @@ export default class Score {
     new Formatter().joinVoices([voice]).format([voice], 400);
 
     // Render voice
-    voice.draw(this.context, this.stave);
+    voice.draw(this.context, this.staves.treble);
   }
 
   public redrawNote(key: string): void {
