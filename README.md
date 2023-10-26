@@ -1,6 +1,6 @@
 # 音符カード ONLINE
 
-<img width="200px" src="https://github.com/mmzspr/doremi-card-web/assets/30862527/351040aa-fa3e-41c2-86bc-3a3d5a2375f3">
+<img width="200px" src="https://github.com/mmzspr/doremi-card-web/assets/30862527/654d5470-4d38-48b1-bd10-8d595b22ee62">
 
 デモ：https://mmzspr.github.io/doremi-card-web/
 
