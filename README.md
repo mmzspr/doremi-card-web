@@ -8,3 +8,25 @@
 - 言語: TypeScript
 - ビルドツール: Vite
 - テストツール: Vitest
+
+## ビルド方法
+##### インストール
+```
+npm install
+```
+
+##### ビルド
+```
+npm run build
+```
+
+##### テストサーバー
+```
+npm run dev
+```
+
+##### テスト実行
+```
+npm run test
+```
+
