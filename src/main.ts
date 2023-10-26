@@ -15,7 +15,7 @@ window.onload = () => {
   const higherKey = new Key(parseKey('a/5'));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score = new Score('#output', randomKey.string);
+  score = new Score('#output', randomKey.string, 'treble');
   sound = new Sound('c/4', 'a/5');
   console.log(score);
   eventSetting();
@@ -49,7 +49,7 @@ function refresh(): void {
   const higherKey = new Key(parseKey('a/5'));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score.redrawNote(randomKey.string);
+  score.redrawNote(randomKey.string, 'treble');
 }
 
 function answer(answerScale: string): void {
