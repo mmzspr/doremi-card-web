@@ -10,14 +10,17 @@ let score: Score;
 let sound: Sound;
 let timer: ReturnType<typeof setTimeout> | null;
 
+const lowerKeyString = 'f/2';
+const higherKeyString = 'a/5';
+
 window.onload = () => {
-  const lowerKey = new Key(parseKey('f/2'));
-  const higherKey = new Key(parseKey('a/5'));
+  const lowerKey = new Key(parseKey(lowerKeyString));
+  const higherKey = new Key(parseKey(higherKeyString));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
   const clef = judgeClef(randomKey);
   score = new Score('#output', randomKey.string, clef);
-  sound = new Sound('f/2', 'a/5');
+  sound = new Sound(lowerKeyString, higherKeyString);
   console.log(score);
   eventSetting();
 };
@@ -46,8 +49,8 @@ function eventSetting(): void {
 }
 
 function refresh(): void {
-  const lowerKey = new Key(parseKey('f/2'));
-  const higherKey = new Key(parseKey('a/5'));
+  const lowerKey = new Key(parseKey(lowerKeyString));
+  const higherKey = new Key(parseKey(higherKeyString));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
   const clef = judgeClef(randomKey);
