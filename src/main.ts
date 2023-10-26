@@ -11,12 +11,13 @@ let sound: Sound;
 let timer: ReturnType<typeof setTimeout> | null;
 
 window.onload = () => {
-  const lowerKey = new Key(parseKey('c/4'));
+  const lowerKey = new Key(parseKey('f/2'));
   const higherKey = new Key(parseKey('a/5'));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score = new Score('#output', randomKey.string, 'treble');
-  sound = new Sound('c/4', 'a/5');
+  const clef = judgeClef(randomKey);
+  score = new Score('#output', randomKey.string, clef);
+  sound = new Sound('f/2', 'a/5');
   console.log(score);
   eventSetting();
 };
@@ -45,11 +46,12 @@ function eventSetting(): void {
 }
 
 function refresh(): void {
-  const lowerKey = new Key(parseKey('c/4'));
+  const lowerKey = new Key(parseKey('f/2'));
   const higherKey = new Key(parseKey('a/5'));
 
   const randomKey = generateRandomKey(lowerKey, higherKey);
-  score.redrawNote(randomKey.string, 'treble');
+  const clef = judgeClef(randomKey);
+  score.redrawNote(randomKey.string, clef);
 }
 
 function answer(answerScale: string): void {
@@ -98,4 +100,12 @@ function answer(answerScale: string): void {
     refresh();
     timer = null;
   }, 1000);
+}
+
+function judgeClef(key: Key): string {
+  if (key.number >= 40) {
+    return 'treble';
+  } else {
+    return 'bass';
+  }
 }

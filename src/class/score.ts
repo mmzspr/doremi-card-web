@@ -38,7 +38,9 @@ export default class Score {
   }
 
   private drawNote(): void {
-    const notes = [new StaveNote({ keys: [this._key], duration: 'w' })];
+    const notes = [
+      new StaveNote({ keys: [this._key], duration: 'w', clef: this._clef }),
+    ];
 
     // Create a voice in 4/4 and add above notes
     const voice = new Voice({ num_beats: 4, beat_value: 4 });
