@@ -1,5 +1,6 @@
 import './style.scss';
 import { parseKey, toItalianScale, generateRandomKey } from './utils/keyFunc';
+import { drawCheetsheet } from './utils/cheatsheet';
 import { UndefinedDomError, UndefinedDomAttributeError } from './class/error';
 import { type Scale } from './types/key';
 import Score from './class/score';
@@ -23,6 +24,7 @@ window.onload = () => {
   sound = new Sound(lowerKeyString, higherKeyString);
   console.log(score);
   eventSetting();
+  drawCheetsheet();
 };
 
 function eventSetting(): void {
@@ -46,6 +48,26 @@ function eventSetting(): void {
       answer(answerScale);
     });
   }
+
+  // ===== cheatsheet button =====
+  const cheatsheetButton =
+    document.querySelector<HTMLButtonElement>('#cheatsheet-button');
+  if (cheatsheetButton == null) {
+    throw new UndefinedDomError('cheatsheet button not found');
+  }
+  cheatsheetButton.addEventListener('click', () => {
+    showCheetsheet();
+  });
+
+  // ===== close cheatsheet button =====
+  const closeCheatsheetButton =
+    document.querySelector<HTMLButtonElement>('#cheatsheet-close');
+  if (closeCheatsheetButton == null) {
+    throw new UndefinedDomError('close cheatsheet button not found');
+  }
+  closeCheatsheetButton.addEventListener('click', (e) => {
+    closeCheetsheet(e);
+  });
 }
 
 function refresh(): void {
@@ -111,4 +133,24 @@ function judgeClef(key: Key): string {
   } else {
     return 'bass';
   }
+}
+
+function showCheetsheet(): void {
+  const cheatsheet = document.querySelector<HTMLDivElement>(
+    '.cheatsheet-wrapper',
+  );
+  if (cheatsheet == null) {
+    throw new UndefinedDomError('cheatsheet not found');
+  }
+  cheatsheet.style.display = 'block';
+}
+
+function closeCheetsheet(e: MouseEvent): void {
+  const cheatsheet = document.querySelector<HTMLDivElement>(
+    '.cheatsheet-wrapper',
+  );
+  if (cheatsheet == null) {
+    throw new UndefinedDomError('cheatsheet not found');
+  }
+  cheatsheet.style.display = 'none';
 }
