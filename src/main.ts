@@ -65,8 +65,8 @@ function eventSetting(): void {
   if (closeCheatsheetButton == null) {
     throw new UndefinedDomError('close cheatsheet button not found');
   }
-  closeCheatsheetButton.addEventListener('click', (e) => {
-    closeCheetsheet(e);
+  closeCheatsheetButton.addEventListener('click', () => {
+    closeCheetsheet();
   });
 }
 
@@ -145,7 +145,7 @@ function showCheetsheet(): void {
   cheatsheet.style.display = 'block';
 }
 
-function closeCheetsheet(e: MouseEvent): void {
+function closeCheetsheet(): void {
   const cheatsheet = document.querySelector<HTMLDivElement>(
     '.cheatsheet-wrapper',
   );
