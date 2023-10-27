@@ -107,6 +107,7 @@ main {
 }
 
 .cheatsheet-wrapper {
+  display: none;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -145,6 +146,20 @@ main {
       .svg-text {
         font: bold 50px sans-serif;
       }
+    }
+  }
+}
+
+#cheat-sheet-button {
+  background-color: #00000000;
+  border: 0px;
+  margin: 50px;
+  img {
+    width: 100px;
+    filter: drop-shadow(6px 6px 0px #d4d4d4);
+    &:hover {
+      transform: translate(3px, 3px);
+      filter: drop-shadow(3px 3px 0px #d4d4d4);
     }
   }
 }
