@@ -1,5 +1,6 @@
 import './style.scss';
 import { parseKey, toItalianScale, generateRandomKey } from './utils/keyFunc';
+import { drawCheetsheet } from './utils/cheatsheet';
 import { UndefinedDomError, UndefinedDomAttributeError } from './class/error';
 import { type Scale } from './types/key';
 import Score from './class/score';
@@ -23,6 +24,7 @@ window.onload = () => {
   sound = new Sound(lowerKeyString, higherKeyString);
   console.log(score);
   eventSetting();
+  drawCheetsheet();
 };
 
 function eventSetting(): void {
