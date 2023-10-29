@@ -23,6 +23,10 @@ main {
   position: relative;
   top: -60px;
   height: 425px;
+  max-width: 100%;
+  svg {
+    max-width: 90%;
+  }
 }
 
 .main-wrapper {
@@ -34,6 +38,11 @@ main {
 
 .answer-wrapper {
   padding: 20px;
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    padding: 0px;
+    width: 100%;
+  }
   button {
     margin: 2px;
     color: rgb(106, 106, 106);
@@ -44,6 +53,7 @@ main {
     height: 150px;
     background-color: white;
     border: 0px;
+    flex-direction: row;
     box-shadow:
       5px 5px 0px #d1d1d1,
       10px 10px 0px #d1d1d1,
@@ -60,6 +70,18 @@ main {
         5px 5px 0px #d1d1d188,
         0px 0px 2px #a6a6a688;
       border: solid 1px rgb(179, 179, 179);
+    }
+    @media screen and (max-width: 768px) {
+      margin: 0px;
+      width: 64px;
+      height: 120px;
+      font-size: 25px;
+    }
+    @media screen and (max-width: 500px) {
+      margin: 0px;
+      width: 40px;
+      height: 75px;
+      font-size: 12px;
     }
   }
 }
@@ -120,11 +142,23 @@ main {
     border-radius: 20px;
     position: relative;
     width: 900px;
+    max-width: 90%;
     height: 500px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 255, 255);
+    @media screen and (max-width: 720px) {
+      padding: 0px;
+      height: auto;
+    }
+    #cheatsheet-output {
+      pointer-events: none;
+      max-width: 100%;
+      svg {
+        max-width: 90%;
+      }
+    }
 
     #cheatsheet-close {
       position: absolute;
